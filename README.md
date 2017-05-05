@@ -1,6 +1,6 @@
 spring-cloud-feedback
 =================
-:point_right:LMN common module, representing LMN domain model and common enumeration.
+feedback project for [ConsulDiscoveryClient can't get bean ConsulRegistration and ConsulLifecycle in application context.](https://github.com/spring-cloud/spring-cloud-consul/issues/306)
 
 Prepare
 -------
