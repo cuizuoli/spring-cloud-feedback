@@ -1,0 +1,33 @@
+kafka:
+  brokers: 10.128.142.131:10092,10.128.142.198:10092,10.128.143.2:10092
+  zk-nodes: 10.128.142.132:3181,10.128.142.199:3181,10.128.143.3:3181/lmn/cloud
+  replication-factor: 3
+
+server.port: 8080
+
+spring:
+  application.name: web-service
+  profiles.active: local
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}:${spring.application.instance_id:${spring.profiles.active}}
+        query-passing: true
+    config:
+      fail-fast: true
+      discovery:
+        enabled: true
+        service-id: config-server
+    discovery:
+      client:
+        health-indicator.enabled: false
+        composite-indicator.enabled: false
+    stream:
+      kafka:
+        binder:
+          brokers: ${kafka.brokers}
+          zk-nodes: ${kafka.zk-nodes}
+          replication-factor: ${kafka.replication-factor}
+      bindings.hystrixStreamOutput.destination: lmn-hystrix-beta-v1

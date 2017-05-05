@@ -1,0 +1,18 @@
+server.port: 8888
+management.security.enabled: false
+endpoints.shutdown.enabled: true
+
+spring:
+  application.name: config-server
+  profiles.active: native
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}:${spring.application.instance_id:${spring.profiles.active}}
+        query-passing: true
+    config:
+      server:
+        health.enabled: false
+        native.search-locations: classpath:/config-repo/
